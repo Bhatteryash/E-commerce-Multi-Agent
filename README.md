@@ -1,6 +1,6 @@
 # 🛒 Autonomous E-Commerce Manager
 ## 🔍 Problem It Solves: 
-          Online sellers need to manage pricing, inventory, marketing, and customer queries manually. Automation here means scale and reduced operational overhead.
+    Online sellers need to manage pricing, inventory, marketing, and customer queries manually. Automation here means scale and reduced operational overhead.
 ## 🧠 Agentic System Overview: 
     - 📦 Inventory Manager Agent: Monitors stock levels and auto-restocks or alerts. 
     - 💸 Pricing Agent: Adjusts prices based on demand, competitor pricing, or click-throughs. 
