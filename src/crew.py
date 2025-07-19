@@ -3,6 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List, Dict, Any
 from src.tools.ecommerce_tools import ProductSearchTool, PriceComparisonTool
+import re
 
 @CrewBase
 class ECommerce():
@@ -130,9 +131,13 @@ class ECommerce():
             process=Process.sequential,
             verbose=True
         ).kickoff(inputs=inputs)
-        print("\n✅ Customer support query handled successfully!")
-        print(f"Results: {result.raw}")
+        ans = remove_think_tags(result.raw)
+        # print("\n✅ Customer support query handled successfully!")
+        # print(f"Results: {ans}")
         return {
             'success': True,
-            'response': result.raw
+            'response': ans
         }
+
+def remove_think_tags(text):
+    return re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)

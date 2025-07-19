@@ -6,7 +6,7 @@ import uvicorn
 import asyncio
 import logging
 from datetime import datetime
-import json
+from contextlib import asynccontextmanager
 
 from src.crew import ECommerce
 
@@ -71,8 +71,8 @@ def get_crew():
         crew_instance = ECommerce()
     return crew_instance
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Initialize the application on startup"""
     logger.info("🚀 Starting E-commerce Multi-Agent API...")
     try:
@@ -188,62 +188,6 @@ async def customer_support(request: CustomerSupportRequest):
                 timestamp=datetime.now().isoformat()
             ).dict()
         )
-
-@app.get("/api/v1/search/example")
-async def get_search_example():
-    """
-    Get example search requests for testing
-    """
-    examples = [
-        {
-            "query": "wireless bluetooth headphones",
-            "budget": "under $200",
-            "category": "electronics",
-            "preferences": "good sound quality, noise cancellation, long battery life"
-        },
-        {
-            "query": "laptop for programming",
-            "budget": "under $1500",
-            "category": "computers",
-            "preferences": "fast processor, good keyboard, lightweight"
-        },
-        {
-            "query": "running shoes",
-            "budget": "flexible",
-            "category": "sports",
-            "preferences": "comfortable, good support, durable"
-        }
-    ]
-    
-    return {
-        "examples": examples,
-        "usage": "POST these examples to /api/v1/search to test the API"
-    }
-
-@app.get("/api/v1/support/example")
-async def get_support_example():
-    """
-    Get example support queries for testing
-    """
-    examples = [
-        {
-            "query": "What's the return policy for electronics?",
-            "context": "I'm considering buying headphones"
-        },
-        {
-            "query": "Do you offer international shipping?",
-            "context": "I want to order a laptop to Canada"
-        },
-        {
-            "query": "How long does delivery usually take?",
-            "context": "I need running shoes for next week"
-        }
-    ]
-    
-    return {
-        "examples": examples,
-        "usage": "POST these examples to /api/v1/support to test the API"
-    }
 
 # Async background task for long-running operations
 @app.post("/api/v1/search/async")
