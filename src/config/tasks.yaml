@@ -1,0 +1,35 @@
+product_search_task:
+  description: >
+    Search for products based on the customer's requirements: {query}
+    Consider factors like budget: {budget}, category: {category}, and any specific features mentioned.
+    Research multiple sources and marketplaces to find the best options.
+  expected_output: >
+    A detailed list of 5-10 product recommendations with names, descriptions, key features, and availability.
+  agent: product_researcher
+
+price_analysis_task:
+  description: >
+    Analyze the pricing for the products found in the research phase.
+    Compare prices across different platforms and identify the best deals.
+    Consider factors like shipping costs, warranties, and return policies.
+  expected_output: >
+    A comprehensive price comparison report showing the best value options with total costs and savings.
+  agent: price_analyzer
+
+recommendation_task:
+  description: >
+    Create personalized recommendations based on the research and price analysis.
+    Consider user preferences: {preferences} and shopping history if available.
+    Rank products based on value, quality, and fit for the customer's needs.
+  expected_output: >
+    A ranked list of top 3-5 product recommendations with detailed explanations for why each product is recommended.
+  agent: recommendation_specialist
+
+customer_support_task:
+  description: >
+    Address any customer questions or concerns about the recommendations.
+    Provide additional information about products, shipping, or purchasing process.
+    Handle follow-up queries: {follow_up_query} if provided.
+  expected_output: >
+    Clear, helpful responses to customer questions with actionable next steps.
+  agent: customer_service_agent
