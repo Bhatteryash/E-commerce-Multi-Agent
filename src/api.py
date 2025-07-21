@@ -14,11 +14,10 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-# Configure logging
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# FastAPI app instance
 app = FastAPI(
     title="E-commerce Multi-Agent API",
     description="REST API for e-commerce product search and recommendations using CrewAI",
@@ -27,16 +26,13 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Global crew instance (in production, consider using dependency injection)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
