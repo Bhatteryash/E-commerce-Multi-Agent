@@ -64,7 +64,7 @@ app.include_router(router)
 def start_server():
     """Start the FastAPI server"""
     uvicorn.run(
-        "src.e_commerce.api:app",
+        "src.api:app",
         host="0.0.0.0",
         port=8000,
         reload=True,
