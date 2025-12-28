@@ -5,12 +5,14 @@ Export all custom tools for easy importing
 
 from src.tools.ecommerce_tools import (
     ProductSearchTool,
-    PriceComparisonTool
+    PriceComparisonTool,
+    UserPreferencesTool
 )
 from src.tools.custom_tool import MyCustomTool
 
 __all__ = [
     "ProductSearchTool",
-    "PriceComparisonTool", 
+    "PriceComparisonTool",
+    "UserPreferencesTool",
     "MyCustomTool"
 ]
